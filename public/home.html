@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./css/home.css">
+   
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <section>
+                <p>Authapp</p>
+                <div id="menu-icon">
+                    <img id="header-img">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                      </svg>
+                </div>
+                <ul class="options none">
+                    <li id="log-out">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                        </svg>
+                        <span>Cerrar sesión</span>
+                    </li>
+                </ul>
+            </section>
+        </header>
+        <section>
+            <h1>Información personal</h1>
+            <p>Información basica como tu nombre y foto 😁</p>
+        </section>
+        <main>
+            <section class="profile-info">
+                <header>
+                    <div>
+                        <h3>Perfil</h3>
+                        <p>Alguna información puede ser visible para otras personas</p>
+                    </div>
+                    <button class="edit">
+                        Editar
+                    </button>
+                </header>
+                <div class="card profile-picture">
+                    <h4>Foto</h4>
+                    <img id="img" src="" alt="">
+                </div>
+                <div class="card profile-name">
+                    <h4>Nombre</h4>
+                    <span id="name">
+                    </span>
+                </div>
+                <div class="card profile-bio">
+                    <h4>Descripción</h4>
+                    <span id="bio">
+                        <!-- Soy programador Junior que esta en camino del mundo laboral -->
+                    </span>
+                </div>
+                <div class="card profile-email">
+                    <h4>Correo</h4>
+                    <span id="email">
+                    </span>
+                </div>
+                
+            </section>
+            <section class="edit-info none">
+                <header>
+                    <div>
+                        <h3>Cambiar información</h3>
+                        <p>Los cambios serán vistos por las demas personas</p>
+                    </div>
+                    <button class="btn-back">
+                        Volver
+                    </button>
+                </header>
+                <form>
+                    <div>
+                        <img id="edit-img">
+                        <div id="img-hover">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-fill" viewBox="0 0 16 16">
+                                <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/>
+                              </svg>
+                        </div>
+                        <button id="change-photo" >Cambiar foto</button>
+                    </div>
+                    <label>Nombre</label>
+                    <input id="edit-name" type="text" name="name" placeholder="Nombre">
+                    <label>Descripción</label>
+                    <textarea id="edit-bio" name="bio" cols="30" rows="10"></textarea>
+                    <label>Contraseña</label>
+                    <input class="edit-password" type="text" name="password" placeholder="Actualizar contraseña">
+                    <button type="submit" id="save">Guardar</button>
+                </form>
+            </section>
+        </main>
+        <footer>
+            <a href="https://github.com/g-susvs/authentication-app">ver repositorio</a>
+        </footer>
+
+    </div>
+
+
+    <script src="./js/home.js"></script>
+   
+</body>

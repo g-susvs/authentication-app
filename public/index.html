@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicia Sesión</title>
+    <link rel="stylesheet" href="./css/login.css">
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v14.0&appId=778775353144696&autoLogAppEvents=1"
+        nonce="H0IBl6eK"></script> -->
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <form>
+            <h1>Login</h1>
+            <input type="email" name="email" placeholder="Correo" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <button type="submit">Iniciar Sesión</button>
+
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+
+        </form>
+        <div>
+            <!-- Boton Facebook -->
+            <!-- <div id="fb-root"></div>
+                
+                <div <div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with"
+                data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"
+                onlogin="checkLoginState();"></div> -->
+        </div>
+        <!-- <div id="g_id_onload"
+                data-client_id="303345924244-asc3el2a5rmtam17mn2j4l18dq8p0dvu.apps.googleusercontent.com" data-callback="handleCredentialResponse"
+                data-auto_prompt="false">
+            </div>
+
+            <div class="g_id_signin" 
+            data-type="standard" 
+            data-shape="rectangular" 
+            data-theme="outline"
+            data-text="sign_in_with" 
+            data-size="large" 
+            data-logo_alignment="left">
+            </div> -->
+
+        <div id="g_id_onload" data-client_id="303345924244-asc3el2a5rmtam17mn2j4l18dq8p0dvu.apps.googleusercontent.com"
+            data-context="signin" data-callback="handleCredentialResponse" data-ux_mode="popup"
+            data-auto_prompt="false">
+        </div>
+
+        <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline"
+            data-text="$ {button.text}" data-size="large" data-logo_alignment="left">
+        </div>
+        <p>¿No tienes una cuenta aún? <a href="./signin.html">Registrate</a></p>
+
+    </div>
+    <script>
+
+        //============== GOOGLE ====================
+
+        function handleCredentialResponse(response) {
+            fetch("http://localhost:8080/api/auth/google", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "g-token": response.credential
+                },
+
+            })
+                .then(res => res.json())
+                .then(json => {
+                    console.log(json);
+                    localStorage.setItem('x-token', json.token);
+                    window.location = 'home.html';
+                })
+                .catch(err => console.log(err))
+        }
+
+
+    </script>
+
+    <!-- <script>
+
+
+        function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+            console.log('statusChangeCallback');
+            console.log(response);                   // The current login status of the person.
+            if (response.status === 'connected') {   // Logged into your webpage and Facebook.
+                testAPI();
+            } else {                                 // Not logged into your webpage or we are unable to tell.
+                document.getElementById('status').innerHTML = 'Please log ' +
+                    'into this webpage.';
+            }
+        }
+
+        function checkLoginState() {               // Called when a person is finished with the Login Button.
+            FB.getLoginStatus(function (response) {   // See the onlogin handler
+                statusChangeCallback(response);
+            });
+        }
+
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '778775353144696',
+                cookie: true,
+                xfbml: true,
+                version: 'v8.0'
+            });
+            FB.AppEvents.logPageView();
+            // FB.login()
+            FB.getLoginStatus(function (response) {   // Called after the JS SDK has been initialized.
+                // statusChangeCallback(response);         
+                console.log(response)
+            });
+
+            // FB.Event.subscribe('xfbml.render', finished_rendering);
+        };
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
+            console.log('Welcome!  Fetching your information.... ');
+            FB.api('/me?fields=email,name,picture', function (response) {
+                console.log('Successful login for: ' + response.name);
+                console.log(response)
+                //   document.getElementById('status').innerHTML =
+                //     'Thanks for logging in, ' + response.name + '!';
+            });
+        }
+
+
+    </script> -->
+    <script src="./js/auth.js"></script>
+</body>
+
+</html>
