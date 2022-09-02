@@ -1,6 +1,5 @@
 :root {
     --first-color: #ef233c;
-    /* --dark-color: #270505; */
     --dark-color: #232323;
     --light-color: #f2f2f2;
     --text-color: #888;
@@ -179,10 +178,6 @@ main .profile-info .card span {
     background-color: var(--light-color);
 }
 
-.none {
-    display: none;
-}
-
 .edit-info header {
     display: flex;
     flex-direction: row;
@@ -332,6 +327,7 @@ footer a {
     align-items: center;
     
 }
+
 .edit-loader{
     z-index: 999;
     position: fixed;
@@ -361,7 +357,10 @@ footer a {
             mask-composite: subtract;
     animation: s3 1s infinite linear;
   }
-  @keyframes s3 {to{transform: rotate(1turn)}}
+@keyframes s3 {to{transform: rotate(1turn)}}
+.none{
+    display: none;
+}
 
 @media (min-width: 700px) {
 

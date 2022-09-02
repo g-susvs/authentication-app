@@ -12,8 +12,20 @@ const validateJWT = async (req=request, res, next) => {
             msg:"jWT - no hay token en la petición"
         })
     }
-    
     const {id} =  jwt.verify(token, process.env.SECRETORPRIVATEKEY);
+    
+    // const d =  jwt.verify(token, process.env.SECRETORPRIVATEKEY, (err, decoded)=>{
+    //     if(err){
+    //         err = {
+    //             name: 'TokenExpiredError',
+    //             message: 'jwt expired',
+    //             expiredAt: new Date().getDate()
+    //           }
+    //         return err;
+    //     }
+    //     return decoded;
+    // });
+    
     
     const user = await User.findById(id);
     if(!user){

@@ -26,8 +26,26 @@ const isAdmin = async (req, res, next) => {
     next();
 }
 
+const isValidCollection = (collection) =>{
+    const collections = ["users"];
+    if(!collections.includes(collection)){
+        throw new Error(`La colección ${collection} no es valida`);
+    }
+    return true;
+
+}
+const validFormDataFile = (req, res, next) => {
+    if (!req.files || Object.keys(req.files).length === 0 || !req.files.file) {
+        return res.status(400).json({msg:"No viene imagen en la petición"});
+    }
+
+    next();
+}
+
 module.exports = {
     emailExits,
     roleExits,
-    isAdmin
+    isAdmin,
+    isValidCollection,
+    validFormDataFile
 }

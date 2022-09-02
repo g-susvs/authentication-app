@@ -1,4 +1,5 @@
 const express = require('express');
+const fileUpload = require('express-fileupload')
 // const fs = require('fs');
 // const https = require('https');
 const cors = require('cors');
@@ -23,11 +24,17 @@ class Server{
         this.app.use(cors());
         this.app.use(express.json());
         this.app.use(express.static('public'));
+        this.app.use(fileUpload({
+            useTempFiles : true,
+            tempFileDir : '/tmp/',
+            createParentPath: true // crea una carpeta si no la encuentra
+        }));
     }
 
     routes(){
         this.app.use('/api/users', require('../routes/user'));
         this.app.use('/api/auth', require('../routes/auth'));
+        this.app.use('/api/upload', require('../routes/upload'));
     }
 
     listen(){

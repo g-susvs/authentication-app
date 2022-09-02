@@ -1,8 +1,11 @@
+import addDataImage from "./helpers/add_data_img.js";
 
 const d = document;
 
 const $container    = d.querySelector(".container");
 const $main         = d.querySelector("main");
+const $loader       = d.querySelector(".loader");
+
 // datos del usuario
 const $headerImg    = d.querySelector("#header-img");
 const $img          = d.querySelector("#img");
@@ -28,20 +31,12 @@ let infoUser;
 const $loaderContainer = d.createElement("div");
 
 d.addEventListener("DOMContentLoaded", async ()=>{
-    // const $loader = d.createElement("div");
-    // $loader.classList.add("spinner-3");
-    // $$loaderContainer.classList.add("loader");
-    // $$loaderContainer.appendChild($loader);
-    // $container.appendChild($$loaderContainer);
-    addLoaderDOM({
-        container: $container,
-        element: $loaderContainer,
-        classItem: "loader"
-    })
-
-    await getUserInfo();
-
-    removeLoaderDOM($loaderContainer);
+    
+        
+        await getUserInfo();
+        $loader.classList.add("none");
+        
+    
 });
 
 d.addEventListener("click",(e)=>{
@@ -64,23 +59,21 @@ d.addEventListener("click",(e)=>{
         $arrowSvg.classList.toggle("svg-rotate");
         $options.classList.toggle("none");
     }
+    if(e.target.matches("#img-hover") || e.target.matches("#img-hover *") || e.target.matches("#change-photo")){
+        console.log("cambiar imageg");
+    }
     
 })
+
 d.addEventListener("submit", async(e)=>{
     e.preventDefault();
-    // const $editLoaderContenainer = d.createElement("div");
-    // $loader.classList.add("spinner-3");
-    // $$loaderContainer.classList.add("edit-loader");
-    // $$loaderContainer.appendChild($loader);
-    // $container.appendChild($$loaderContainer);
-    addLoaderDOM({
-        container: $container, 
-        element: $loaderContainer, 
-        classItem: "edit-loader"
-    })
-
+    
+    $loader.classList.remove("loader","none");
+    $loader.classList.add("edit-loader");
+    
+    
     $save.disabled = true;
-
+    
     const data = {};
     for(let el of $form.elements){
         if(el.name.length > 0 && el.value.length >= 6){
@@ -89,11 +82,11 @@ d.addEventListener("submit", async(e)=>{
     }
 
     await updateUserInfo(data);
-
+    
     $save.disabled = false;
-    removeLoaderDOM($loaderContainer);
+    $loader.classList.add("none");
     $editInfo.classList.add("none");
-
+    
     
 })
 
@@ -148,25 +141,6 @@ async function updateUserInfo (body){
     }
 }
 
-const addDataImage = ({element,img,name}) => {
-    element.src = img;
-    element.alt = name;
-    element.setAttribute("referrerpolicy","no-referrer");
-    return element;
-}
-
-const addLoaderDOM = ({container,element, classItem}) => {
-    const $loader = d.createElement("div");
-    $loader.classList.add("spinner-3");
-    element.classList.add(classItem);
-    element.appendChild($loader);
-    container.appendChild(element);
-}
-const removeLoaderDOM = (element) => {
-    const garbage = element.querySelector(".spinner-3");
-    element.removeChild(garbage);
-    element.remove();
-}
 
 
 
